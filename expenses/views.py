@@ -19,6 +19,8 @@ from fpdf import  FPDF
 import time
 
 import requests
+import json
+
 
 # AUTH
 
@@ -63,31 +65,43 @@ def HomePage(request):
 
 @login_required(login_url='login')
 def Upload_Image(request):
+    imagereceipt = ImageReceiptForm()
     if request.method == 'POST':
-        image = request.FILES['image'].read()
-        # print(image)
-        
-        # url = "https://api.mindee.net/v1/products/mindee/expense_receipts/v5/predict"
+        receiptForm = ImageReceiptForm(request.POST, request.FILES)
+        if receiptForm.is_valid():
+            image = receiptForm.save()
+            print("valid", image.image.url)
 
-        # files = {"document": image}
-        # print(files)
-        # headers = {"Authorization": "Token c2a3493846f7a75257642149578d9d73"}
-        # response = requests.post(url, files=files, headers=headers)
-        import json
-        import requests
+            # headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZmQwNDFlMjctMDc0OS00YjQzLWE1NGQtMDExODg5MjVlMjZlIiwidHlwZSI6ImFwaV90b2tlbiJ9.I5FJVWht-NlNL-CXRzhtMIhbm343lsVO8egGswxEzGY"}
 
-        headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZmQwNDFlMjctMDc0OS00YjQzLWE1NGQtMDExODg5MjVlMjZlIiwidHlwZSI6ImFwaV90b2tlbiJ9.I5FJVWht-NlNL-CXRzhtMIhbm343lsVO8egGswxEzGY"}
+            # url="https://api.edenai.run/v2/ocr/ocr"
+            # json_payload={"show_original_response": False,"fallback_providers": "","providers": "google", "language":"en", "file_url": image.image.url}
 
-        url="https://api.edenai.run/v2/ocr/data_extraction"
-        data={"show_original_response": False,"fallback_providers": "","providers": "base64"}
-        files = {'file': image}
-        print(files)
-        response = requests.post(url, data=data, files=files, headers=headers)
+            # response = requests.post(url, json=json_payload, headers=headers)
+            # print(json_payload)
+            
+            # result = json.loads(response.text)
 
-        result = json.loads(response.text)
-        print(result)
+            # print("result1", result)
+                        
+            url = "https://base64.ai/api/scan"
 
-    return render(request, "expenses/upload_image.html")
+            payload = json.dumps({
+            "url": image.image.url
+            })
+            headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'ApiKey jzbsoriano@iskolarngbayan.pup.edu.ph:7871a591-62c6-4817-90e8-f66a061087bd'
+            }
+
+            response = requests.request("POST", url, headers=headers, data=payload, timeout=10000)
+
+            result = json.loads(response.text)
+            
+            print("result2", result)
+
+    context = {'form': imagereceipt}
+    return render(request, "expenses/upload_image.html", context)
 
 @login_required(login_url='login')
 def Calculator(request):

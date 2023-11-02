@@ -11,6 +11,20 @@ def create_rand_id():
             allowed_chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
 
 
+class ExpensesCategory(models.Model):
+    category = models.CharField(max_length=255)
+
+    
+    def __str__(self):
+        return f"{self.category}".title()
+
+class Keywords(models.Model):
+    category = models.ForeignKey(ExpensesCategory, on_delete=models.CASCADE, null=True, blank=True)
+    keywords = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.keywords}"
+
 class Uploaded_Image_Expenses(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='uploads/expenses', blank=True, null=True)
@@ -33,6 +47,7 @@ class Expenses(models.Model):
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     rndid = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
+    category = models.CharField(max_length=255)
 
     class Meta:
         ordering = ("date_added",)

@@ -1,78 +1,102 @@
-{% extends 'expenses/base.html' %} 
-{% load static %} 
-{% block content %}
+{% extends 'expenses/base.html' %} {% load static %} {% block content %}
 <div class="page">
-    <!-- Main Navbar-->
-    {% block mainnav %}{% include 'expenses/main_nav.html' %}{% endblock mainnav %}
+  <!-- Main Navbar-->
+  {% include 'expenses/main_nav.html' %}
+  {% block mainnav %}
+  {% endblock mainnav %}
 
-    <div class="page-content d-flex align-items-stretch"> 
-      <!-- Side Navbar -->
-        {% block nav %}{% include 'expenses/nav.html' %}{% endblock nav %}
+  <div class="page-content d-flex align-items-stretch">
+    <!-- Side Navbar -->
+    {% block nav %}{% include 'expenses/nav.html' %}{% endblock nav %}
 
-        <div class="content-inner w-100">
-            <!-- Page Header-->
-            <header class="bg-white shadow-sm px-4 py-3 z-index-20">
-              <div class="container-fluid px-0">
-                <h2 class="mb-0 p-1">Forms</h2>
-              </div>
-            </header>
-            <!-- Breadcrumb-->
-            <div class="bg-white">
-              <div class="container-fluid">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb mb-0 py-3">
-                    <li class="breadcrumb-item"><a class="fw-light" href="{% url 'home' %}">Home</a></li>
-                    <li class="breadcrumb-item active fw-light" aria-current="page">Forms</li>
-                  </ol>
-                </nav>
+    <div class="content-inner w-100">
+      <!-- Page Header-->
+      <header class="bg-white shadow-sm px-4 py-3 z-index-20">
+        <div class="container-fluid px-0">
+          <h2 class="mb-0 p-1">Forms</h2>
+        </div>
+      </header>
+      <!-- Breadcrumb-->
+      <div class="bg-white">
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 py-3">
+              <li class="breadcrumb-item">
+                <a class="fw-light" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="breadcrumb-item active fw-light" aria-current="page">
+                Forms
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- Forms Section-->
+      <section class="forms">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Form Elements -->
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-close"></div>
+                  <h3 class="h4 mb-0">Upload Your Receipt</h3>
+                </div>
+                <div class="card-body">
+                  <form
+                    class="form-horizontal"
+                    action=""
+                    method="POST"
+                    enctype="multipart/form-data"
+                  >
+                    {% csrf_token %}
+                    <div class="row">
+                      <label class="col-sm-3 form-label" for="formFile"
+                        >File input</label
+                      >
+                      <div class="col-sm-9">
+                        <input
+                          class="form-control"
+                          id="formFile"
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="border-bottom my-5 border-gray-200"></div>
+                    <div class="row">
+                      <div class="col-sm-9 ms-auto">
+                        <button class="btn btn-primary" type="submit">
+                          Upload
+                        </button>
+                        <button class="btn btn-secondary" type="reset">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-            <!-- Forms Section-->
-            <section class="forms"> 
-              <div class="container-fluid">
-                <div class="row">
-                  <!-- Form Elements -->
-                  <div class="col-lg-12">
-                    <div class="card">
-                      <div class="card-header">
-                        <div class="card-close">
-                        </div>
-                        <h3 class="h4 mb-0">Upload Your Reciept</h3>
-                      </div>
-                      <div class="card-body">
-                        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
-                         {% csrf_token %}
-                          <div class="row">
-                            <label class="col-sm-3 form-label" for="formFile" >File input</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="formFile" type="file" name="image" accept="image/*" required>
-                            </div>
-                          </div>
-                          <div class="border-bottom my-5 border-gray-200"></div>
-                          <div class="row">
-                            <div class="col-sm-9 ms-auto">
-                                <button class="btn btn-primary" type="submit">Upload</button>
-                              <button class="btn btn-secondary" type="reset">Cancel</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <!-- Page Footer-->
-            <footer class="position-absolute bottom-0 bg-darkBlue text-white text-center py-3 w-100 text-xs" id="footer">
-              <div class="container-fluid">
-                <div class="row gy-2">
-                    <div class="col-sm-6 text-sm-start">
-                        <p class="mb-0">SwiftSnap &copy; 2023</p>
-                    </div>
-                </div>
-              </div>
-            </footer>
+          </div>
         </div>
+      </section>
+      <!-- Page Footer-->
+      <footer
+        class="position-absolute bottom-0 bg-darkBlue text-white text-center py-3 w-100 text-xs"
+        id="footer"
+      >
+        <div class="container-fluid">
+          <div class="row gy-2">
+            <div class="col-sm-6 text-sm-start">
+              <p class="mb-0">SwiftSnap &copy; 2023</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
+</div>
 {% endblock %}

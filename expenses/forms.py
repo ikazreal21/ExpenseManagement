@@ -11,7 +11,13 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class ExpenseForm(forms.ModelForm):
+class ImageReceiptForm(forms.ModelForm):
     class Meta:
         model = Uploaded_Image_Expenses
+        fields = "__all__"
+
+
+class ExpenseForm(forms.ModelForm):
+    class Meta:
+        model = Expenses
         fields = "__all__"
