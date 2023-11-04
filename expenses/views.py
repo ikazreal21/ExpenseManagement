@@ -70,20 +70,7 @@ def Upload_Image(request):
         receiptForm = ImageReceiptForm(request.POST, request.FILES)
         if receiptForm.is_valid():
             image = receiptForm.save()
-            print("valid", image.image.url)
-
-            # headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZmQwNDFlMjctMDc0OS00YjQzLWE1NGQtMDExODg5MjVlMjZlIiwidHlwZSI6ImFwaV90b2tlbiJ9.I5FJVWht-NlNL-CXRzhtMIhbm343lsVO8egGswxEzGY"}
-
-            # url="https://api.edenai.run/v2/ocr/ocr"
-            # json_payload={"show_original_response": False,"fallback_providers": "","providers": "google", "language":"en", "file_url": image.image.url}
-
-            # response = requests.post(url, json=json_payload, headers=headers)
-            # print(json_payload)
-            
-            # result = json.loads(response.text)
-
-            # print("result1", result)
-                        
+            # OCR
             url = "https://base64.ai/api/scan"
 
             payload = json.dumps({
@@ -98,6 +85,13 @@ def Upload_Image(request):
 
             result = json.loads(response.text)
             
+            keywords = Keywords.objects.all()
+            if len(result):
+                for i in keywords:
+                    if i.keywords.lower() in result[0]['ocr'].lower():
+                        print('{0} found'.format(i))
+                        if result[0]['fields']['total']:
+                            print(result[0]['fields']['total']['value'])
             print("result2", result)
 
     context = {'form': imagereceipt}
