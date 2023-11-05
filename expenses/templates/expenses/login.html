@@ -29,8 +29,8 @@
                     <label class="label-material" for="login-password">Password</label>
                   </div>
                     {% for i in messages %}
-					<p class="message">{{i}}</p>
-				    {% endfor %}
+					            <p class="message">{{i}}</p>
+				            {% endfor %}
                   <button class="btn btn-primary mb-3" id="login" type="submit">Login</button><br>
                   <br><small class="text-gray-500">Do not have an account? </small><a class="text-sm text-paleBlue" href="{% url 'register' %}">Signup</a>
                 </form>

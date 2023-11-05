@@ -22,14 +22,14 @@
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#portfolio-grid-1"> </use>
           </svg>Calculator </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
+          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#browser-window-1"> </use>
+          </svg>Manage Upload </a></li>
       <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#sales-up-1"> </use>
           </svg>Charts </a></li>
-      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
-         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-            <use xlink:href="#browser-window-1"> </use>
-         </svg>Manage Upload </a></li>
       {% elif  '/upload/' in request.path %}
       <li class="sidebar-item"><a class="sidebar-link" href="{% url  'home' %}"> 
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
@@ -43,14 +43,35 @@
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#portfolio-grid-1"> </use>
           </svg>Calculator </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#browser-window-1"> </use>
+        </svg>Manage Upload </a></li>
       <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#sales-up-1"> </use>
           </svg>Charts </a></li>
-      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
-       <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+      {% elif  '/expenses/' in request.path %}
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url  'home' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#real-estate-1"> </use>
+        </svg>Home </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'upload_reciept' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#survey-1"> </use>
+        </svg>Upload Receipt </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'calculator' %}"> 
+          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#portfolio-grid-1"> </use>
+          </svg>Calculator </a></li>
+      <li class="sidebar-item active"><a class="sidebar-link" href="{% url 'expenses' %}"> 
+      <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
           <use xlink:href="#browser-window-1"> </use>
-       </svg>Manage Upload </a></li>
+      </svg>Manage Upload </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
+          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#sales-up-1"> </use>
+          </svg>Charts </a></li>
       {% else %}
       <li class="sidebar-item active"><a class="sidebar-link" href="{% url  'home' %}"> 
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
@@ -64,14 +85,14 @@
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#portfolio-grid-1"> </use>
           </svg>Calculator </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
+      <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+        <use xlink:href="#browser-window-1"> </use>
+      </svg>Manage Upload </a></li>
       <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
-          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-            <use xlink:href="#sales-up-1"> </use>
-          </svg>Charts </a></li>
-      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
-       <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-          <use xlink:href="#browser-window-1"> </use>
-       </svg>Manage Upload </a></li>
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#sales-up-1"> </use>
+        </svg>Charts </a></li>
       {% endif %}
 
   </nav>

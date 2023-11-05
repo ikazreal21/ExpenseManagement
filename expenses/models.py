@@ -44,13 +44,22 @@ class Uploaded_Image_Expenses(models.Model):
 class Expenses(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     expense_name = models.CharField(max_length=255)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    total_amount = models.FloatField(max_length=10)
     rndid = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ("date_added",)
+        ordering = ("-date_added",)
 
     def __str__(self):
         return f"{self.expense_name}|{self.user}|{self.total_amount}"
+    
+    def price(self):
+        total_amount = float(self.total_amount)
+        total_amountstr = "₱ {:,.2f}".format(total_amount)
+        return total_amountstr
+
+    def date(self):
+        locale.setlocale(locale.LC_ALL, 'en-US')
+        return self.date_added.strftime("%B %d, %Y")

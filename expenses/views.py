@@ -91,12 +91,36 @@ def Upload_Image(request):
                     if i.keywords.lower() in result[0]['ocr'].lower():
                         print('{0} found'.format(i))
                         if result[0]['fields']['total']:
+                            # print("result2", result)
+                            print(type(result[0]['fields']['total']['value']))
+                            total_amount = result[0]['fields']['total']['value']
+                            total_amount = total_amount.replace(',', '')
+                            Expenses.objects.create(
+                                user=request.user, 
+                                expense_name=i.keywords.title(),
+                                total_amount=float(total_amount),
+                                rndid=image.reference_number,
+                                category=i.category
+                            )
                             print(result[0]['fields']['total']['value'])
-            print("result2", result)
-
+                            return redirect('expenses')
+                        else:
+                            messages.info(request, "Can't Read Total Amount")
+            else:
+                Uploaded_Image_Expenses.objects.delete(
+                    reference_number=image.reference_number
+                )
+                messages.info(request, "Receipt Can't Read by the OCR")
     context = {'form': imagereceipt}
     return render(request, "expenses/upload_image.html", context)
 
 @login_required(login_url='login')
 def Calculator(request):
     return render(request, "expenses/calculator.html")
+
+
+@login_required(login_url='login')
+def ManageUpload(request):
+    expenses = Expenses.objects.filter(user=request.user)
+    context = {'expenses': expenses}
+    return render(request, "expenses/expenses.html", context)

@@ -25,7 +25,7 @@
                 <a class="fw-light" href="{% url 'home' %}">Home</a>
               </li>
               <li class="breadcrumb-item active fw-light" aria-current="page">
-                Forms
+                Upload Receipt
               </li>
             </ol>
           </nav>
@@ -76,6 +76,9 @@
                         </button>
                       </div>
                     </div>
+                    {% for i in messages %}
+                      <p class="message">{{i}}</p>
+                    {% endfor %}
                   </form>
                 </div>
               </div>

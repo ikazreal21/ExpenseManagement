@@ -10,6 +10,7 @@ urlpatterns = [
     path("", views.HomePage, name="home"),
     path("upload/", views.Upload_Image, name="upload_reciept"),
     path("calculator/", views.Calculator, name="calculator"),
+    path("expenses/", views.ManageUpload, name="expenses"),
     # path("", views.HomePage, name="home"),
 
 
