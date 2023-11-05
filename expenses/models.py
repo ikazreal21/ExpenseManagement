@@ -63,3 +63,8 @@ class Expenses(models.Model):
     def date(self):
         locale.setlocale(locale.LC_ALL, 'en-US')
         return self.date_added.strftime("%B %d, %Y")
+    
+    def get_month(self):
+        import datetime
+        datee = datetime.datetime.strptime(self.date_added, "%Y-%m-%d")
+        return int(datee.month)

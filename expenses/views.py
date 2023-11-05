@@ -20,10 +20,9 @@ import time
 
 import requests
 import json
-
+import datetime
 
 # AUTH
-
 def Register(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -61,7 +60,39 @@ def Logout(request):
 
 @login_required(login_url='login')
 def HomePage(request):
-    return render(request, "expenses/homepage.html")
+    today = datetime.datetime.now()
+
+    uploads = Uploaded_Image_Expenses.objects.all()
+    catergory = ExpensesCategory.objects.all()
+    expenses = Expenses.objects.filter(user=request.user)
+    total_per_month = 0
+    total_expenses = 0
+    total_expenses_per_month = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+    for i in expenses:
+        for j in range(0,13): 
+            if j == i.date_added.month:
+                total_expenses_per_month[j-1] += i.total_amount
+        total_expenses += i.total_amount
+        if today.month == i.date_added.month:
+            total_per_month += i.total_amount
+    
+    total_amount = float(total_per_month)
+    total_per_month = "₱ {:,.2f}".format(total_amount)
+    
+    total_amount = float(total_expenses)
+    total_expenses = "₱ {:,.2f}".format(total_amount)
+    
+    print(total_per_month)
+    print(total_expenses)
+    print(total_expenses_per_month)
+    context = {'total_per_month': total_per_month,
+               'total_expenses': total_expenses,
+               'total_expenses_per_month': total_expenses_per_month,
+               'uploads': len(uploads),
+               'catergory': len(catergory)}
+            
+    return render(request, "expenses/homepage.html", context)
 
 @login_required(login_url='login')
 def Upload_Image(request):

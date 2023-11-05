@@ -24,20 +24,6 @@
                 <div class="row gx-5 bg-white">
                   <!-- Item -->
                   <div class="col-xl-3 col-sm-6 py-4 border-lg-end border-gray-200">
-                    <div class="d-flex align-items-center">
-                      <div class="icon flex-shrink-0 bg-violet">
-                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
-                          <use xlink:href="#user-1"> </use>
-                        </svg>
-                      </div>
-                      <div class="mx-3">
-                        <h6 class="h4 fw-light text-gray-600 mb-3">Categories</h6>
-                        <div class="progress" style="height: 4px">
-                          <div class="progress-bar bg-violet" role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                      <div class="number"><strong class="text-lg">25</strong></div>
-                    </div>
                   </div>
                   <!-- Item -->
                   <div class="col-xl-3 col-sm-6 py-4 border-lg-end border-gray-200">
@@ -49,11 +35,11 @@
                       </div>
                       <div class="mx-3">
                         <h6 class="h4 fw-light text-gray-600 mb-3">Receipt<br>Uploaded</h6>
-                        <div class="progress" style="height: 4px">
+                        <!-- <div class="progress" style="height: 4px">
                           <div class="progress-bar bg-red" role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        </div> -->
                       </div>
-                      <div class="number"><strong class="text-lg">70</strong></div>
+                      <div class="number"><strong class="text-lg">{{uploads}}</strong></div>
                     </div>
                   </div>
                   <!-- Item -->
@@ -66,29 +52,15 @@
                       </div>
                       <div class="mx-3">
                         <h6 class="h4 fw-light text-gray-600 mb-3">Total<br>Expenses</h6>
-                        <div class="progress" style="height: 4px">
+                        <!-- <div class="progress" style="height: 4px">
                           <div class="progress-bar bg-green" role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        </div> -->
                       </div>
-                      <div class="number"><strong class="text-lg">40</strong></div>
+                      <div class="number"><strong class="text-md">{{total_expenses}}</strong></div>
                     </div>
                   </div>
                   <!-- Item -->
                   <div class="col-xl-3 col-sm-6 py-4">
-                    <div class="d-flex align-items-center">
-                      <div class="icon flex-shrink-0 bg-orange">
-                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
-                          <use xlink:href="#list-details-1"> </use>
-                        </svg>
-                      </div>
-                      <div class="mx-3">
-                        <h6 class="h4 fw-light text-gray-600 mb-3">Open<br>Cases</h6>
-                        <div class="progress" style="height: 4px">
-                          <div class="progress-bar bg-orange" role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                      <div class="number"><strong class="text-lg">50</strong></div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -105,7 +77,7 @@
                   <div class="card-body">
                     <div class="d-flex align-items-center">
                       <div class="icon flex-shrink-0 bg-red"><i class="fas fa-tasks"></i></div>
-                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">234</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Applications</small></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{catergory}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Category</small></div>
                     </div>
                   </div>
                 </div>
@@ -113,7 +85,7 @@
                   <div class="card-body">
                     <div class="d-flex align-items-center">
                       <div class="icon flex-shrink-0 bg-green"><i class="far fa-calendar"></i></div>
-                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">152</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Interviews</small></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{uploads}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Uploads</small></div>
                     </div>
                   </div>
                 </div>
@@ -121,33 +93,18 @@
                   <div class="card-body">
                     <div class="d-flex align-items-center">
                       <div class="icon flex-shrink-0 bg-orange"><i class="far fa-paper-plane"></i></div>
-                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">147</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Forwards</small></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_per_month}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Expenses This Month</small></div>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- Line Chart            -->
-              <div class="col-lg-6 col-12">
+              <div class="col-lg-9 col-12">
                 <div class="card mb-0 h-100">
                   <div class="card-body">
+                    <h1>Expenses Graph</h1>
+                    {{ total_expenses_per_month|json_script:'total_expenses_per_month' }}
                     <canvas id="lineCahrt"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-12">
-                <!-- Bar Chart   -->
-                <div class="card">
-                  <div class="card-body"><strong class="h2 mb-0 d-block text-violet">95%</strong><small class="text-gray-500 small text-uppercase d-block mb-3">Current Server Uptime</small>
-                    <canvas id="barChartHome"></canvas>
-                  </div>
-                </div>
-                <!-- Numbers-->
-                <div class="card mb-0">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-                      <div class="icon flex-shrink-0 bg-green"><i class="fas fa-chart-area"></i></div>
-                      <div class="ms-3"><strong class="text-lg mb-0 d-block lh-1">99.9%</strong><small class="text-gray-500 small text-uppercase">Success Rate</small></div>
-                    </div>
                   </div>
                 </div>
               </div>
