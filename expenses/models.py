@@ -62,11 +62,11 @@ class Expenses(models.Model):
         return total_amountstr
 
     def date(self):
-        locale.setlocale(locale.LC_ALL, 'en-US')
+        # locale.setlocale(locale.LC_ALL, 'en-US')
         return self.date_added.strftime("%B %d, %Y")
     
     def date_due(self):
-        locale.setlocale(locale.LC_ALL, 'en-US')
+        # locale.setlocale(locale.LC_ALL, 'en-US')
         return self.date_due.strftime("%B %d, %Y")
     
     def get_month(self):
