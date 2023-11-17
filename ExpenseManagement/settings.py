@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-b$e=)t$74kn*8v0)gk08zpnlpnutsb#mjo%*#y(cy)7t1&0e7g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ["127.0.0.1", "swiftsnap-a8f1aa21540d.herokuapp.com"]
 
 
 # Application definition
@@ -88,6 +89,11 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.parse("postgres://yjnoraeimawjsd:41553e6fe3b15686c2444bbd131d60b1d464a319e7b020b58a1bec24e3187f4d@ec2-35-169-9-79.compute-1.amazonaws.com:5432/d1456kla4dp8n", conn_max_age=600)
 
 
 # Password validation
