@@ -34,6 +34,27 @@
     <!-- Projects Section-->
     <section class="pb-0">
     <div class="container-fluid">
+      <div class="col-lg-4">                           
+        <div class="card">
+          <div class="card-body">
+            <form class="row g-3 align-items-center" method="post">
+              {% csrf_token %}
+              <div class="col-lg">
+                <label class="visually-hidden" for="inlineFormSelectPref">Category</label>
+                <select class="form-select" name="category" id="inlineFormSelectPref">
+                  <option value=""  selected>...</option>
+                  {% for i in category %}
+                    <option>{{i}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-lg">
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
         <!-- Project-->
         {% for i in expenses %}
         <div class="card mb-3">
@@ -51,8 +72,13 @@
                       <div class="ms-3">
                       <h3 class="h4 text-gray-700 mb-0">{{i.expense_name}}</h3><small class="text-gray-500">{{i.category}} </small>
                       </div>
-                  </div><span class="text-sm text-gray-600 d-none d-sm-block">{{i.date}}</span>
-                </div>
+                    </div><span class="text-sm text-gray-600 d-none d-sm-block">{{i.date}}</span>
+                  </div>
+                  <div class="col-sm">
+                    <a class="btn btn-primary" href="{% url 'view' i.rndid %}">View</a>
+                    <a class="btn btn-warning" href="{% url 'update' i.rndid %}">Update</a>
+                    <a class="btn btn-danger" href="{% url 'delete' i.rndid %}">Delete</a>
+                  </div>
               </div>
               </div>
           </div>

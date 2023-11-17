@@ -46,6 +46,7 @@ class Expenses(models.Model):
     expense_name = models.CharField(max_length=255)
     total_amount = models.FloatField(max_length=10)
     rndid = models.CharField(max_length=255)
+    date_due = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=255)
 
@@ -64,7 +65,11 @@ class Expenses(models.Model):
         locale.setlocale(locale.LC_ALL, 'en-US')
         return self.date_added.strftime("%B %d, %Y")
     
+    def date_due(self):
+        locale.setlocale(locale.LC_ALL, 'en-US')
+        return self.date_due.strftime("%B %d, %Y")
+    
     def get_month(self):
         import datetime
-        datee = datetime.datetime.strptime(self.date_added, "%Y-%m-%d")
+        datee = datetime.datetime.strptime(self.date_due, "%Y-%m-%d")
         return int(datee.month)

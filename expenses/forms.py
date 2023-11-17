@@ -6,6 +6,10 @@ from django.forms import ModelForm, ValidationError
 from .models import *
 
 
+class DateInput(forms.DateInput):
+    input_type = "date"
+
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User

@@ -16,57 +16,6 @@
             <h2 class="mb-0 p-1">Dashboard</h2>
           </div>
         </header>
-        <!-- Dashboard Counts Section-->
-        <section class="pb-0">
-          <div class="container-fluid">
-            <div class="card mb-0">
-              <div class="card-body">
-                <div class="row gx-5 bg-white">
-                  <!-- Item -->
-                  <div class="col-xl-3 col-sm-6 py-4 border-lg-end border-gray-200">
-                  </div>
-                  <!-- Item -->
-                  <div class="col-xl-3 col-sm-6 py-4 border-lg-end border-gray-200">
-                    <div class="d-flex align-items-center">
-                      <div class="icon flex-shrink-0 bg-red">
-                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
-                          <use xlink:href="#survey-1"> </use>
-                        </svg>
-                      </div>
-                      <div class="mx-3">
-                        <h6 class="h4 fw-light text-gray-600 mb-3">Receipt<br>Uploaded</h6>
-                        <!-- <div class="progress" style="height: 4px">
-                          <div class="progress-bar bg-red" role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> -->
-                      </div>
-                      <div class="number"><strong class="text-lg">{{uploads}}</strong></div>
-                    </div>
-                  </div>
-                  <!-- Item -->
-                  <div class="col-xl-3 col-sm-6 py-4 border-lg-end border-gray-200">
-                    <div class="d-flex align-items-center">
-                      <div class="icon flex-shrink-0 bg-green">
-                        <svg class="svg-icon svg-icon-sm svg-icon-heavy">
-                          <use xlink:href="#numbers-1"> </use>
-                        </svg>
-                      </div>
-                      <div class="mx-3">
-                        <h6 class="h4 fw-light text-gray-600 mb-3">Total<br>Expenses</h6>
-                        <!-- <div class="progress" style="height: 4px">
-                          <div class="progress-bar bg-green" role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> -->
-                      </div>
-                      <div class="number"><strong class="text-md">{{total_expenses}}</strong></div>
-                    </div>
-                  </div>
-                  <!-- Item -->
-                  <div class="col-xl-3 col-sm-6 py-4">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         <!-- Dashboard Header Section    -->
         <section class="pb-0">
           <div class="container-fluid">
@@ -85,11 +34,21 @@
                   <div class="card-body">
                     <div class="d-flex align-items-center">
                       <div class="icon flex-shrink-0 bg-green"><i class="far fa-calendar"></i></div>
-                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{uploads}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Uploads</small></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{uploads}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Receipt Uploaded</small></div>
                     </div>
                   </div>
                 </div>
-                <div class="card mb-0">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="icon flex-shrink-0 bg-orange"><svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                        <use xlink:href="#numbers-1"> </use>
+                      </svg></i></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_expenses}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Total<br>Expenses</small></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-3">
                   <div class="card-body">
                     <div class="d-flex align-items-center">
                       <div class="icon flex-shrink-0 bg-orange"><i class="far fa-paper-plane"></i></div>
@@ -102,7 +61,7 @@
               <div class="col-lg-9 col-12">
                 <div class="card mb-0 h-100">
                   <div class="card-body">
-                    <h1>Expenses Graph</h1>
+                    <h1>Expenses Graph Per Year</h1>
                     {{ total_expenses_per_month|json_script:'total_expenses_per_month' }}
                     <canvas id="lineCahrt"></canvas>
                   </div>
@@ -111,6 +70,44 @@
             </div>
           </div>
         </section>
+
+        <section class="pb-0">
+          <div class="container-fluid">
+            <div class="row align-items-stretch">
+              <div class="col-lg-12">
+                <div class="card mb-0">
+                  <div class="card-header d-flex align-items-center">
+                    <h3 class="h4 mb-0">Pie Chart For Category</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-10 mx-auto">
+                        {{ chart_category|json_script:'chart_category' }}
+                        {{ chart_category_epenses|json_script:'chart_category_epenses' }}
+                        <canvas id="pieChartExample"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-lg-6">
+                <div class="card mb-0">
+                  <div class="card-header d-flex align-items-center">
+                    <h3 class="h4 mb-0">Pie  Chart Example</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-10 mx-auto">
+                        <canvas id="pieChartExample1"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </section>
+        
         <!-- Projects Section-->
         <section class="pb-0">
         </section>

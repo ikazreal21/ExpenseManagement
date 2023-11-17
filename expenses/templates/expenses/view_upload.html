@@ -38,10 +38,10 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 py-3">
               <li class="breadcrumb-item">
-                <a class="fw-light" href="{% url 'home' %}">Home</a>
+                <a class="fw-light" href="{% url 'expenses' %}">Expenses</a>
               </li>
               <li class="breadcrumb-item active fw-light" aria-current="page">
-                Upload Receipt
+                Update
               </li>
             </ol>
           </nav>
@@ -56,7 +56,7 @@
               <div class="card">
                 <div class="card-header">
                   <div class="card-close"></div>
-                  <h3 class="h4 mb-0">Upload Your Receipt</h3>
+                  <h3 class="h4 mb-0">Confirmation</h3>
                 </div>
                 <div class="card-body">
                   <form
@@ -66,45 +66,44 @@
                     enctype="multipart/form-data"
                   >
                     {% csrf_token %}
-                    <div class="row">
-                      <label class="col-sm-3 form-label" for="formFile"
-                        >File input</label
-                      >
-                      <div class="col-sm-9">
-                        <input
-                          class="form-control"
-                          id="formFile"
-                          type="file"
-                          name="image"
-                          accept="image/*"
-                          required
-                        />
-                      </div>
+                    <div class="mb-3 w-100">
+                        <label class="form-label" for="exampleInputPassword1">Image</label>
+                        <img src="{{image.image.url}}" alt="" width="100%">
                     </div>
+                    <input type="text" name="rndid" value="{{expense.rndid}}" maxlength="255" required id="id_rndid" hidden>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleInputPassword1">Reciept Name</label>
+                        <input class="form-control" id="exampleInputPassword1" type="text" name="expense_name" value="{{expense.expense_name}}" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleInputPassword1">Category</label>
+                        <div class="">
+                          <select class="form-select mb-3" name="category" disabled>
+                            <option>{{expense.category}}</option>
+                            {% for i in category %}
+                            <option>{{i}}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleInputPassword1">Total Amount</label>
+                        <input class="form-control" id="exampleInputPassword1" name="total_amount" type="number" value="{{expense.total_amount}}" disabled>
+                      </div>
+                      <div class="mb-3">
+                        {% if not expense.date_due %}
+                        <label class="form-label" for="exampleInputPassword1">Date</label>
+                        <input class="form-control" id="exampleInputPassword1" type="date">
+                        {% endif %}
+                      </div>
                     <div class="border-bottom my-5 border-gray-200"></div>
                     <div class="row">
                       <div class="col-sm-9 ms-auto">
-                        <script>
-                          function myFunction() {
-                              document.getElementById("data1").style.display = "none";
-                              document.getElementById("data").style.display = "none";
-                              console.log("hello")
-                          }
-                        </script>
-                        <button class="btn btn-primary" onclick="myFunction()" type="submit">
-                          Upload
-                        </button>   
-                        
-                        <button class="btn btn-secondary" type="reset">
-                          Cancel
-                        </button>
+                        <a class="btn btn-secondary" href="{% url 'expenses' %}">
+                          Back
+                        </a>
                       </div>
                     </div>
-                    {% for i in messages %}
-                      <script>
-                        alert('{{i}}')
-                      </script>
-                    {% endfor %}
                   </form>
                 </div>
               </div>

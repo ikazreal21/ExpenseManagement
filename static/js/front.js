@@ -229,6 +229,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     required: true,
                     email: true
                 },
+                register1Password: {
+                    required: true,
+                },
                 registerPassword: {
                     required: true,
                 },
@@ -239,7 +242,8 @@ document.addEventListener('DOMContentLoaded', function () {
             messages: {
                 registerUsername: 'Please enter your username',
                 registerEmail: 'Please enter a valid email address',
-                registerPassword: 'Please enter your password',
+                register1Password: 'Please enter your password',
+                registerPassword: 'Please enter your confirm password',
                 registerAgree: 'Your agreement is required'
             },
             invalidFormCallback: function () {
