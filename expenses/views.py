@@ -74,7 +74,16 @@ def Logout(request):
 @login_required(login_url='login')
 def HomePage(request):
     today = datetime.datetime.now()
+    today2 = datetime.datetime.today()
+    days =  datetime.timedelta(days=7)
+    print(today2-datetime.timedelta(days=7))
 
+    data_last_seven_days = Expenses.objects.filter(
+        date_added__range=(today2-days, today2)
+    ).order_by('date_added')
+    print("data", data_last_seven_days)
+
+    total_data_last_seven_days = [0] * len(data_last_seven_days)
     uploads = Uploaded_Image_Expenses.objects.filter(user=request.user)
     catergory1 = ExpensesCategory.objects.all()
     expenses = Expenses.objects.filter(user=request.user)
@@ -99,12 +108,31 @@ def HomePage(request):
 
 
     for i in expenses:
+        print(i.date)
         for j in range(0,13): 
             if j == i.date_added.month:
                 total_expenses_per_month[j-1] += i.total_amount
+
         total_expenses += i.total_amount
         if today.month == i.date_added.month:
             total_per_month += i.total_amount
+
+    initialdate =  data_last_seven_days[0].date_added
+    counter = 0
+    for i in data_last_seven_days:
+        print(initialdate.strftime('%Y-%m-%d'))
+        print(i.date_added.strftime('%Y-%m-%d'))
+
+        if initialdate.strftime('%Y-%m-%d') == i.date_added.strftime('%Y-%m-%d'):
+            print("date match")
+            total_data_last_seven_days[counter] += i.total_amount
+        else:
+            counter += 1
+            initialdate += datetime.timedelta(days=1)
+            total_data_last_seven_days[counter] = i.total_amount
+    
+    print(total_data_last_seven_days)
+    
     
     total_amount = float(total_per_month)
     total_per_month = "₱ {:,.2f}".format(total_amount)
@@ -122,7 +150,9 @@ def HomePage(request):
                'uploads': len(uploads),
                'catergory': len(catergory),
                'chart_category': catergory,
-               'chart_category_epenses':catergory_expenses}
+               'chart_category_epenses':catergory_expenses,
+               'total_data_last_seven_days': total_data_last_seven_days,
+               'total_today':total_data_last_seven_days[0] }
             
     return render(request, "expenses/homepage.html", context)
 
@@ -146,7 +176,7 @@ def Upload_Image(request):
             })
             headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'ApiKey jzbsoriano@iskolarngbayan.pup.edu.ph:7871a591-62c6-4817-90e8-f66a061087bd'
+            'Authorization': 'ApiKey joaquinzaki21@gmail.com:c3e7596b-6f0f-456e-b8eb-d96d1dcc553c'
             }
 
             response = requests.request("POST", url, headers=headers, data=payload, timeout=10000)
@@ -179,6 +209,8 @@ def Upload_Image(request):
                             print(type(result[0]['fields']['heightImperial']['value']))
                             total_amount = result[0]['fields']['heightImperial']['value']
                             total_amount = total_amount.replace(',', '')
+                            if total_amount == '':
+                                total_amount = 0
                             Expenses.objects.create(
                                 user=request.user, 
                                 expense_name=i.keywords.title(),
@@ -196,16 +228,18 @@ def Upload_Image(request):
                                 category=i.category
                             )
                             return redirect('upload_confirmation', pk=image.reference_number)
-                messages.info(request, "Receipt Can't Read by the OCR")
+                messages.info(request, "Receipt Can\'t Read by the OCR")
+                return redirect('upload_confirmation', pk=image.reference_number)
             else:
-                Uploaded_Image_Expenses.objects.get(
-                    reference_number=image.reference_number
-                ).delete()
+                # Uploaded_Image_Expenses.objects.get(
+                #     reference_number=image.reference_number
+                # ).delete()
                 system_messages = messages.get_messages(request)
                 for message in system_messages:
                     # This iteration is necessary
                     pass
-                messages.info(request, "Receipt Can't Read by the OCR")
+                messages.info(request, "Receipt Can\'t Read by the OCR")
+                return redirect('upload_confirmation', pk=image.reference_number)
     context = {'form': imagereceipt}
     return render(request, "expenses/upload_image.html", context)
 

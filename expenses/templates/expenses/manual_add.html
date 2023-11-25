@@ -89,13 +89,9 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="exampleInputPassword1">Total Amount</label>
-                        {% if expense.total_amount == 0.0 %}
-                        <input class="form-control" id="exampleInputPassword1" name="total_amount" type="number" 
-                        placeholder="Enter Amount">
-                        {% else %}
                         <input class="form-control" id="exampleInputPassword1" name="total_amount" type="number" 
                         value="{{expense.total_amount}}">
-                        {% endif %}
+                      </div>
                       <div class="mb-3">
                         {% if not expense.date_due %}
                         <label class="form-label" for="exampleInputPassword1">Date</label>
