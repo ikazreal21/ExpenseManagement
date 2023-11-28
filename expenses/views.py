@@ -82,7 +82,7 @@ def HomePage(request):
         date_added__range=(today2-days, today2), user=request.user
     ).order_by('date_added')
     print("data", data_last_seven_days)
-
+    
     total_data_last_seven_days = [0] * len(data_last_seven_days)
     uploads = Expenses.objects.filter(user=request.user)
     catergory1 = ExpensesCategory.objects.all()
@@ -117,20 +117,21 @@ def HomePage(request):
         if today.month == i.date_added.month:
             total_per_month += i.total_amount
 
-    initialdate =  data_last_seven_days[0].date_added
-    counter = 0
-    for i in data_last_seven_days:
-        print(initialdate.strftime('%Y-%m-%d'))
-        print(i.date_added.strftime('%Y-%m-%d'))
+    if data_last_seven_days:
+        initialdate =  data_last_seven_days[0].date_added
+        counter = 0
+        for i in data_last_seven_days:
+            print(initialdate.strftime('%Y-%m-%d'))
+            print(i.date_added.strftime('%Y-%m-%d'))
 
-        if initialdate.strftime('%Y-%m-%d') == i.date_added.strftime('%Y-%m-%d'):
-            print("date match")
-            total_data_last_seven_days[counter] += i.total_amount
-        else:
-            counter += 1
-            initialdate += datetime.timedelta(days=1)
-            total_data_last_seven_days[counter] = i.total_amount
-    
+            if initialdate.strftime('%Y-%m-%d') == i.date_added.strftime('%Y-%m-%d'):
+                print("date match")
+                total_data_last_seven_days[counter] += i.total_amount
+            else:
+                counter += 1
+                initialdate += datetime.timedelta(days=1)
+                total_data_last_seven_days[counter] = i.total_amount
+        
     print(total_data_last_seven_days)
     
     
