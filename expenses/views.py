@@ -231,8 +231,8 @@ def Upload_Image(request):
                                 category=i.category
                             )
                             return redirect('upload_confirmation', pk=image.reference_number)
-                messages.info(request, "Receipt Can\'t Read by the OCR")
-                return redirect('upload_confirmation', pk=image.reference_number)
+                messages.info(request, "Invalid Reciept")
+                return redirect('upload_reciept')
             else:
                 # Uploaded_Image_Expenses.objects.get(
                 #     reference_number=image.reference_number
