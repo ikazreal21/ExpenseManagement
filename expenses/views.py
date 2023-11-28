@@ -133,6 +133,8 @@ def HomePage(request):
                 total_data_last_seven_days[counter] = i.total_amount
         
     print(total_data_last_seven_days)
+
+    tolal_today = 0
     
     
     total_amount = float(total_per_month)
@@ -153,7 +155,7 @@ def HomePage(request):
                'chart_category': catergory,
                'chart_category_epenses':catergory_expenses,
                'total_data_last_seven_days': total_data_last_seven_days,
-               'total_today':total_data_last_seven_days[0] }
+               'total_today':tolal_today }
             
     return render(request, "expenses/homepage.html", context)
 
