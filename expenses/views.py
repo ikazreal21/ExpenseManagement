@@ -79,12 +79,12 @@ def HomePage(request):
     print(today2-datetime.timedelta(days=7))
 
     data_last_seven_days = Expenses.objects.filter(
-        date_added__range=(today2-days, today2)
+        date_added__range=(today2-days, today2), user=request.user
     ).order_by('date_added')
     print("data", data_last_seven_days)
 
     total_data_last_seven_days = [0] * len(data_last_seven_days)
-    uploads = Uploaded_Image_Expenses.objects.filter(user=request.user)
+    uploads = Expenses.objects.filter(user=request.user)
     catergory1 = ExpensesCategory.objects.all()
     expenses = Expenses.objects.filter(user=request.user)
     total_per_month = 0
@@ -229,7 +229,7 @@ def Upload_Image(request):
                             )
                             return redirect('upload_confirmation', pk=image.reference_number)
                 messages.info(request, "Receipt Can\'t Read by the OCR")
-                return redirect('upload_confirmation', pk=image.reference_number)
+                return redirect('upload_reciept', pk=image.reference_number)
             else:
                 # Uploaded_Image_Expenses.objects.get(
                 #     reference_number=image.reference_number
@@ -238,8 +238,8 @@ def Upload_Image(request):
                 for message in system_messages:
                     # This iteration is necessary
                     pass
-                messages.info(request, "Receipt Can\'t Read by the OCR")
-                return redirect('upload_confirmation', pk=image.reference_number)
+                messages.info(request, "Invalid Reciept")
+                return redirect('upload_reciept')
     context = {'form': imagereceipt}
     return render(request, "expenses/upload_image.html", context)
 
