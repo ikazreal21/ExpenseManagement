@@ -111,6 +111,11 @@
           </div>
         </div>
       </section>
+      {% for i in messages %}
+      <script>
+        alert('{{i}}')
+      </script>
+      {% endfor %}
       <!-- Page Footer-->
       <footer
         class="position-absolute bottom-0 bg-darkBlue text-white text-center py-3 w-100 text-xs"
