@@ -18,14 +18,18 @@
          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#survey-1"> </use>
          </svg>Upload Receipt </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'add-expenses' %}"> 
+          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#sales-up-1"> </use>
+          </svg>Manual Add </a></li>
       <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#browser-window-1"> </use>
           </svg>Manage Upload </a></li>
-      <!-- <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
-          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-            <use xlink:href="#sales-up-1"> </use>
-          </svg>Charts </a></li> -->
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'report' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#browser-window-1"> </use>
+        </svg>Generate Report </a></li>
       {% elif  '/upload/' in request.path %}
       <li class="sidebar-item"><a class="sidebar-link" href="{% url  'home' %}"> 
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
@@ -35,15 +39,18 @@
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#survey-1"> </use>
         </svg>Upload Receipt </a></li>
-
-      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'add-expenses' %}"> 
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-          <use xlink:href="#browser-window-1"> </use>
-        </svg>Manage Upload </a></li>
-      <!-- <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
+          <use xlink:href="#sales-up-1"> </use>
+        </svg>Manual Add </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
           <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-            <use xlink:href="#sales-up-1"> </use>
-          </svg>Charts </a></li> -->
+            <use xlink:href="#browser-window-1"> </use>
+          </svg>Manage Upload </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'report' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#browser-window-1"> </use>
+        </svg>Generate Report </a></li>
       {% elif  '/expenses/' in request.path or '/update/' in request.path %}
       <li class="sidebar-item"><a class="sidebar-link" href="{% url  'home' %}"> 
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
@@ -53,15 +60,60 @@
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#survey-1"> </use>
         </svg>Upload Receipt </a></li>
-
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'add-expenses' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#sales-up-1"> </use>
+        </svg>Manual Add </a></li>
       <li class="sidebar-item active"><a class="sidebar-link" href="{% url 'expenses' %}"> 
       <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
           <use xlink:href="#browser-window-1"> </use>
       </svg>Manage Upload </a></li>
-      <!-- <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
-          <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-            <use xlink:href="#sales-up-1"> </use>
-          </svg>Charts </a></li> -->
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'report' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#browser-window-1"> </use>
+        </svg>Generate Report </a></li>
+      {% elif  '/expenses-add/' in request.path %}
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url  'home' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#real-estate-1"> </use>
+        </svg>Home </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'upload_reciept' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#survey-1"> </use>
+        </svg>Upload Receipt </a></li>
+      <li class="sidebar-item active"><a class="sidebar-link" href="{% url 'add-expenses' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#sales-up-1"> </use>
+        </svg>Manual Add </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
+      <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#browser-window-1"> </use>
+      </svg>Manage Upload </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'report' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#browser-window-1"> </use>
+        </svg>Generate Report </a></li>
+      {% elif  '/report/' in request.path %}
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url  'home' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#real-estate-1"> </use>
+        </svg>Home </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'upload_reciept' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#survey-1"> </use>
+        </svg>Upload Receipt </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'add-expenses' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#sales-up-1"> </use>
+        </svg>Manual Add </a></li>
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
+      <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#browser-window-1"> </use>
+      </svg>Manage Upload </a></li>
+      <li class="sidebar-item active"><a class="sidebar-link" href="{% url 'report' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+            <use xlink:href="#browser-window-1"> </use>
+        </svg>Generate Report </a></li>
       {% else %}
       <li class="sidebar-item active"><a class="sidebar-link" href="{% url  'home' %}"> 
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
@@ -71,15 +123,18 @@
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
             <use xlink:href="#survey-1"> </use>
         </svg>Upload Receipt </a></li>
-
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'add-expenses' %}"> 
+        <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
+          <use xlink:href="#sales-up-1"> </use>
+        </svg>Manual Add </a></li>
       <li class="sidebar-item"><a class="sidebar-link" href="{% url 'expenses' %}"> 
       <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
         <use xlink:href="#browser-window-1"> </use>
       </svg>Manage Upload </a></li>
-      <!-- <li class="sidebar-item"><a class="sidebar-link" href="{% url 'home' %}"> 
+      <li class="sidebar-item"><a class="sidebar-link" href="{% url 'report' %}"> 
         <svg class="svg-icon svg-icon-sm svg-icon-heavy me-xl-2">
-          <use xlink:href="#sales-up-1"> </use>
-        </svg>Charts </a></li> -->
+            <use xlink:href="#browser-window-1"> </use>
+        </svg>Generate Report </a></li>
       {% endif %}
 
   </nav>

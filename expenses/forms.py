@@ -25,3 +25,10 @@ class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expenses
         fields = "__all__"
+
+class AddExpenseForm(forms.ModelForm):
+    class Meta:
+        model = Expenses
+        fields = ["expense_name", "total_amount", "date_added", "category"]
+
+        widgets = {"date_added": DateInput()}

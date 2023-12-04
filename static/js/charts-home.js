@@ -148,6 +148,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Bar Chart
     // ------------------------------------------------------ //
     const total_data_last_seven_days = JSON.parse(document.getElementById('total_data_last_seven_days').textContent);
+    const date_last_seven_days = JSON.parse(document.getElementById('date_last_seven_days').textContent);
+    console.log("test", date_last_seven_days)
     var BARCHARTEXMPLE = document.getElementById("barChartExample");
     var barChartExample = new Chart(BARCHARTEXMPLE, {
         type: "bar",
@@ -173,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
         },
         data: {
-            labels: [1, 2, 3, 4, 5, 6, 7],
+            labels: date_last_seven_days,
             datasets: [
                 {
                     // label: "Data Set 1",

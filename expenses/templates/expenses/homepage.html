@@ -62,7 +62,7 @@
                       <div class="icon flex-shrink-0 bg-orange"><svg class="svg-icon svg-icon-sm svg-icon-heavy">
                         <use xlink:href="#numbers-1"> </use>
                       </svg></i></div>
-                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_expenses}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Total<br>Expenses</small></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_expenses}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Expenses <br>this Year</small></div>
                     </div>
                   </div>
                 </div>
@@ -91,6 +91,7 @@
                   </div>
                   <div class="card-body">
                     {{ total_data_last_seven_days|json_script:'total_data_last_seven_days' }}
+                    {{ date_last_seven_days|json_script:'date_last_seven_days' }}
                     <canvas id="barChartExample"></canvas>
                   </div>
                 </div>

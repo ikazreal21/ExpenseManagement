@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 import locale
 import uuid
+from django.utils import timezone
+from datetime import datetime
+
 
 
 def create_rand_id():
@@ -45,9 +48,9 @@ class Expenses(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     expense_name = models.CharField(max_length=255)
     total_amount = models.FloatField(max_length=10)
-    rndid = models.CharField(max_length=255)
+    rndid = models.CharField(max_length=255, null=True, blank=True)
     date_due = models.CharField(max_length=255)
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateTimeField(default=datetime.now, null=True, blank=True)
     category = models.CharField(max_length=255)
 
     class Meta:
