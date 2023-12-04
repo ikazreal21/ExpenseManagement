@@ -387,6 +387,15 @@ def Update(request, pk):
     stockform = ExpenseForm(instance=expenses)
     print(stockform)
     if request.method == 'POST':
+        image = request.FILES.get('image')
+        if image:
+            receiptForm = ImageReceiptForm(request.POST, request.FILES)
+            print(receiptForm)
+            if receiptForm.is_valid():
+                receiptForm.save(commit=False).user = request.user
+                receiptForm.save(commit=False).reference_number = pk
+                image = receiptForm.save()
+                return redirect('expenses')
         stockform = ExpenseForm(request.POST, request.FILES, instance=expenses)
         print(stockform)
         if stockform.is_valid():
@@ -432,15 +441,41 @@ def AddExpenses(request):
     catergory = ExpensesCategory.objects.all()
     print(create_rand_id())
     if request.method == 'POST':
-        stockform = AddExpenseForm(request.POST)
-        print(stockform)
-        if stockform.is_valid():
+        image = request.FILES.get('image')
+        print(image)
+        expense_name = request.POST.get('expense_name')
+        category = request.POST.get('category')
+        date_added = request.POST.get('date_added')
+        total_amount = request.POST.get('total_amount')
+        if image:
+            receiptForm = ImageReceiptForm(request.POST, request.FILES)
+            print(receiptForm)
+            if receiptForm.is_valid():
+                receiptForm.save(commit=False).user = request.user
+                image = receiptForm.save()
+                Expenses.objects.create(
+                    user=request.user, 
+                    expense_name=expense_name,
+                    total_amount=float(total_amount),
+                    rndid=image.reference_number,
+                    category=category,
+                    date_added=date_added
+                )
+                return redirect('expenses')
+        else:
+            stockform = AddExpenseForm(request.POST)
             print(stockform)
-            stockform.save(commit=False).user = request.user
-            rand_id = create_rand_id()
-            stockform.save(commit=False).rndid = str(rand_id)
-            stockform.save()
-            return redirect('expenses')
+            if stockform.is_valid():
+                print(stockform)
+                stockform.save(commit=False).user = request.user
+                rand_id = create_rand_id()
+                if image:
+                    print("image")
+                    stockform.save(commit=False).rndid = image.reference_number
+                else: 
+                    stockform.save(commit=False).rndid = str(rand_id)
+                stockform.save()
+                return redirect('expenses')
     context = {"category": catergory}
     return render(request, "expenses/manual_add.html", context)
 

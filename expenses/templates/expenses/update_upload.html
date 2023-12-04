@@ -71,8 +71,23 @@
                         <label class="form-label" for="exampleInputPassword1">Image</label>
                         <img src="{{image.image.url}}" alt="" width="100%">
                     </div>
-                    {% endif %}
                     <input type="text" name="rndid" value="{{expense.rndid}}" maxlength="255" required id="id_rndid" hidden>
+                    {% else %}
+                    <div class="row">
+                      <label class="col-sm-3 form-label" for="formFile"
+                        >File input</label
+                      >
+                      <div class="col-sm-9">
+                        <input
+                          class="form-control"
+                          id="formFile"
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                        />
+                      </div>
+                    </div>
+                    {% endif %}
                     <div class="mb-3">
                         <label class="form-label" for="exampleInputPassword1">Reciept Name</label>
                         <input class="form-control" id="exampleInputPassword1" type="text" name="expense_name" value="{{expense.expense_name}}">
