@@ -3424,7 +3424,7 @@ textarea.form-control-lg {
   --bs-btn-bg: #76B947;
   --bs-btn-border-color: #76B947;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #675aca;
+  --bs-btn-hover-bg: #2f5233;
   --bs-btn-hover-border-color: #6155be;
   --bs-btn-focus-shadow-rgb: 141, 128, 241;
   --bs-btn-active-color: #fff;
@@ -3662,7 +3662,7 @@ textarea.form-control-lg {
   --bs-btn-bg: #76B947;
   --bs-btn-border-color: #76B947;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #675aca;
+  --bs-btn-hover-bg: #2f5233;
   --bs-btn-hover-border-color: #6155be;
   --bs-btn-focus-shadow-rgb: 141, 128, 241;
   --bs-btn-active-color: #fff;
@@ -14546,7 +14546,7 @@ nav.navbar .search-box form input {
   z-index: 999;
 }
 .login-page .info {
-  background: rgba(121, 106, 238, 0.9);
+  background: #76B947;
   color: #fff;
 }
 @media (min-width: 992px) {
