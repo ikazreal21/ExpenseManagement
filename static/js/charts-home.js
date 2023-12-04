@@ -53,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
         legendState = false;
     }
     
-    var canvas = document.querySelector("canvas");
+    const canvas = document.getElementById("lineCahrt");
 
+    console.log(canvas)
     var ctx1 = canvas.getContext("2d");
     var gradient1 = ctx1.createLinearGradient(150, 0, 150, 300);
     gradient1.addColorStop(0, "rgba(133, 180, 242, 0.91)");
