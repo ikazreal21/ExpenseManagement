@@ -25,7 +25,8 @@
     <body>
         {% block content %}
         {% endblock %}
-    <!-- JavaScript files-->
+        <!-- JavaScript files-->
+    <script src="{% static 'js/front.js' %}"></script>
     <script src="{% static 'js/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> -->
@@ -34,7 +35,6 @@
     <script src="{% static 'js/vendor/just-validate/js/just-validate.min.js' %}"></script>
     <script src="{% static 'js/vendor/choices.js/public/assets/scripts/choices.min.js' %}"></script>
     <!-- Main File-->
-    <script src="{% static 'js/front.js' %}"></script>
     <script src="{% static 'js/charts-home.js' %}"></script>
     <script src="{% static 'js/charts-custom.js' %}"></script>
     <script>

@@ -44,7 +44,7 @@
                       <div class="icon flex-shrink-0 bg-orange"><svg class="svg-icon svg-icon-sm svg-icon-heavy">
                         <use xlink:href="#numbers-1"> </use>
                       </svg></i></div>
-                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_expenses}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Total<br>Expenses</small></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_today}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Total<br>Today</small></div>
                     </div>
                   </div>
                 </div>
@@ -53,6 +53,16 @@
                     <div class="d-flex align-items-center">
                       <div class="icon flex-shrink-0 bg-orange"><i class="far fa-paper-plane"></i></div>
                       <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_per_month}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Expenses This Month</small></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center">
+                      <div class="icon flex-shrink-0 bg-orange"><svg class="svg-icon svg-icon-sm svg-icon-heavy">
+                        <use xlink:href="#numbers-1"> </use>
+                      </svg></i></div>
+                      <div class="ms-3"><strong class="text-lg d-block lh-1 mb-1">{{total_expenses}}</strong><small class="text-uppercase text-gray-500 small d-block lh-1">Expenses <br>this Year</small></div>
                     </div>
                   </div>
                 </div>
@@ -74,8 +84,20 @@
         <section class="pb-0">
           <div class="container-fluid">
             <div class="row align-items-stretch">
-              <div class="col-lg-12">
-                <div class="card mb-0">
+              <div class="col-lg-6">
+                <div class="card mb-0 h-100">
+                  <div class="card-header d-flex align-items-center">
+                    <h3 class="h4 mb-0">Expenses in Last 7 Days</h3>
+                  </div>
+                  <div class="card-body">
+                    {{ total_data_last_seven_days|json_script:'total_data_last_seven_days' }}
+                    {{ date_last_seven_days|json_script:'date_last_seven_days' }}
+                    <canvas id="barChartExample"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card mb-0 h-100">
                   <div class="card-header d-flex align-items-center">
                     <h3 class="h4 mb-0">Pie Chart For Category</h3>
                   </div>
@@ -90,23 +112,10 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="col-lg-6">
-                <div class="card mb-0">
-                  <div class="card-header d-flex align-items-center">
-                    <h3 class="h4 mb-0">Pie  Chart Example</h3>
-                  </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-lg-10 mx-auto">
-                        <canvas id="pieChartExample1"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </section>
+        
         
         <!-- Projects Section-->
         <section class="pb-0">

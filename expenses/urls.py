@@ -17,6 +17,8 @@ urlpatterns = [
     # path("upload_confirmation/", views.Upload_Image_Confirmation, name="upload_confirmation"),
     # path("calculator/", views.Calculator, name="calculator"),
     path("expenses/", views.ManageUpload, name="expenses"),
+    path("expenses-add/", views.AddExpenses, name="add-expenses"),
+    path("report/", views.Report, name="report"),
     # path("", views.HomePage, name="home"),
 
 

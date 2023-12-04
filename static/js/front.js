@@ -231,9 +231,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 register1Password: {
                     required: true,
+                    password: true,
                 },
                 registerPassword: {
                     required: true,
+                    password: true,
                 },
                 registerAgree: {
                     required: true,
@@ -242,8 +244,8 @@ document.addEventListener('DOMContentLoaded', function () {
             messages: {
                 registerUsername: 'Please enter your username',
                 registerEmail: 'Please enter a valid email address',
-                register1Password: 'Please enter your password',
-                registerPassword: 'Please enter your confirm password',
+                register1Password: 'Password must contain minimum eight characters, at least one letter and one number',
+                registerPassword: 'Password must contain minimum eight characters, at least one letter and one number',
                 registerAgree: 'Your agreement is required'
             },
             invalidFormCallback: function () {

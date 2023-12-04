@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Charts Gradients
     // ------------------------------------------------------ //
     var canvas = document.querySelector("canvas");
+    console.log(canvas)
 
     var ctx1 = canvas.getContext("2d");
     var gradient1 = ctx1.createLinearGradient(150, 0, 150, 300);

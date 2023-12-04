@@ -66,10 +66,12 @@
                     enctype="multipart/form-data"
                   >
                     {% csrf_token %}
+                    {% if image %}
                     <div class="mb-3 w-100">
                         <label class="form-label" for="exampleInputPassword1">Image</label>
                         <img src="{{image.image.url}}" alt="" width="100%">
                     </div>
+                    {% endif %}
                     <input type="text" name="rndid" value="{{expense.rndid}}" maxlength="255" required id="id_rndid" hidden>
                     <div class="mb-3">
                         <label class="form-label" for="exampleInputPassword1">Reciept Name</label>
