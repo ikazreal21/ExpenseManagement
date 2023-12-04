@@ -36,7 +36,7 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle
 
-def generate_invoice_pdf(invoice_data, output_filename='invoice.pdf'):
+def generate_invoice_pdf(invoice_data, username, output_filename='invoice.pdf'):
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter)
 
@@ -70,6 +70,8 @@ def generate_invoice_pdf(invoice_data, output_filename='invoice.pdf'):
     total_amount = float(total)
     total_amountstr = "\u20B1 {:,.2f}".format(total_amount)
     elements.append(Paragraph(f"Total: {total_amountstr}", invoice_style))
+
+    doc.title = f"{username} generated report"
 
     doc.build(elements)
     pdf = buffer.getvalue()
@@ -470,7 +472,7 @@ def Report(request):
 
             uploads = Expenses.objects.filter(user=request.user, date_added__year=year, date_added__month=month, date_added__day=day)
 
-        pdf = generate_invoice_pdf(uploads)
+        pdf = generate_invoice_pdf(uploads, request.user)
 
         # Create HTTP response with PDF content
         response = HttpResponse(pdf, content_type='application/pdf')
