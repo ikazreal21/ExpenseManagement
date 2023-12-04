@@ -53,7 +53,7 @@ https://bootstrapious.com/p/admin-template
   --bs-yellow: #eef157;
   --bs-faintGreen: #54e69d;
   --bs-orange: #ffc36d;
-  --bs-violet: #796AEE;
+  --bs-violet: #76B947;
   --bs-paleBlue: #85b4f2;
   --bs-primary-rgb: 239, 82, 133;
   --bs-secondary-rgb: 108, 117, 125;
@@ -3659,8 +3659,8 @@ textarea.form-control-lg {
 
 .btn-violet {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #796AEE;
-  --bs-btn-border-color: #796AEE;
+  --bs-btn-bg: #76B947;
+  --bs-btn-border-color: #76B947;
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #675aca;
   --bs-btn-hover-border-color: #6155be;
@@ -3670,8 +3670,8 @@ textarea.form-control-lg {
   --bs-btn-active-border-color: #5b50b3;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #796AEE;
-  --bs-btn-disabled-border-color: #796AEE;
+  --bs-btn-disabled-bg: #76B947;
+  --bs-btn-disabled-border-color: #76B947;
 }
 
 .btn-paleBlue {
@@ -3930,19 +3930,19 @@ textarea.form-control-lg {
 }
 
 .btn-outline-violet {
-  --bs-btn-color: #796AEE;
-  --bs-btn-border-color: #796AEE;
+  --bs-btn-color: #76B947;
+  --bs-btn-border-color: #76B947;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #796AEE;
-  --bs-btn-hover-border-color: #796AEE;
+  --bs-btn-hover-bg: #76B947;
+  --bs-btn-hover-border-color: #76B947;
   --bs-btn-focus-shadow-rgb: 121, 106, 238;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #796AEE;
-  --bs-btn-active-border-color: #796AEE;
+  --bs-btn-active-bg: #76B947;
+  --bs-btn-active-border-color: #76B947;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #796AEE;
+  --bs-btn-disabled-color: #76B947;
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: #796AEE;
+  --bs-btn-disabled-border-color: #76B947;
   --bs-gradient: none;
 }
 
@@ -8335,7 +8335,7 @@ textarea.form-control-lg {
 }
 
 .link-violet {
-  color: #796AEE !important;
+  color: #76B947 !important;
 }
 .link-violet:hover, .link-violet:focus {
   color: #6155be !important;
@@ -15201,7 +15201,7 @@ a.text-hover-orange:focus, a.text-hover-orange:hover {
   transition: all 0.2s ease-in-out;
 }
 .text-hover-violet:focus, .text-hover-violet:hover {
-  color: #796AEE !important;
+  color: #76B947 !important;
 }
 
 a.text-hover-violet {
@@ -15209,7 +15209,7 @@ a.text-hover-violet {
   transition: all 0.2s ease-in-out;
 }
 a.text-hover-violet:focus, a.text-hover-violet:hover {
-  color: #796AEE !important;
+  color: #76B947 !important;
 }
 
 .bg-violet-light {
@@ -15217,7 +15217,7 @@ a.text-hover-violet:focus, a.text-hover-violet:hover {
 }
 
 .border-violet {
-  border-color: #796AEE !important;
+  border-color: #76B947 !important;
 }
 
 .text-hover-paleBlue {
@@ -15423,7 +15423,7 @@ a.text-hover-paleBlue:focus, a.text-hover-paleBlue:hover {
 }
 
 .badge-violet-light {
-  color: #796AEE;
+  color: #76B947;
   background-color: theme-color-level("violet", -11);
 }
 
@@ -15911,17 +15911,17 @@ a.text-hover-paleBlue:focus, a.text-hover-paleBlue:hover {
 
 .bg-violet {
   color: #fff;
-  background: #796AEE;
+  background: #76B947;
 }
 .bg-violet:hover {
   color: #fff;
 }
 
 .text-violet {
-  color: #796AEE;
+  color: #76B947;
 }
 .text-violet:hover {
-  color: #796AEE;
+  color: #76B947;
 }
 
 .bg-blue {
@@ -16114,7 +16114,7 @@ a.text-hover-paleBlue:focus, a.text-hover-paleBlue:hover {
 }
 
 .avatar-violet-light {
-  color: #796AEE;
+  color: #76B947;
   background-color: #e4e1fc;
 }
 
