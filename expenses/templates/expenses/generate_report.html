@@ -63,8 +63,7 @@
                     class="form-horizontal"
                     action=""
                     method="POST"
-                    enctype="multipart/form-data"
-                    novalidate 
+                    enctype="multipart/form-data" 
                   >
                     {% csrf_token %}
                     <!-- <div class="mb-3 w-100">
@@ -93,7 +92,7 @@
                     <div class="border-bottom my-5 border-gray-200"></div>
                     <div class="row">
                       <div class="col-sm-9 ms-auto">
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-primary" onclick="return confirm('Are you sure you want to generate report?')"  type="submit">
                           Generate
                         </button>   
                         <button class="btn btn-primary" type="reset">

@@ -474,7 +474,7 @@ def Report(request):
 
         # Create HTTP response with PDF content
         response = HttpResponse(pdf, content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(report_name)
+        response['Content-Disposition'] = 'inline; filename="{}.pdf"'.format(report_name)
         # Render a template with JavaScript for redirection
         template = get_template('expenses/redirect_template.html')
         context = {'redirect_url': reverse('expenses')}
