@@ -256,7 +256,7 @@ def Upload_Image(request):
             })
             headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'ApiKey joaquinzaki21@gmail.com:c3e7596b-6f0f-456e-b8eb-d96d1dcc553c'
+            'Authorization': 'ApiKey soriano.zaki.1@gmail.com:26923409-5d6f-4687-8341-97a60dc223e1'
             }
 
             response = requests.request("POST", url, headers=headers, data=payload, timeout=10000)
