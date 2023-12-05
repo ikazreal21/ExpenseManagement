@@ -203,6 +203,8 @@ def HomePage(request):
         formatted_date = date.strftime("%B %d, %Y")
         total_data_last_seven_days.append(i["count"])
         date_last_seven_days.append(formatted_date)
+    
+    print(date_last_seven_days)
 
     tolal_today_amount = 0
 
