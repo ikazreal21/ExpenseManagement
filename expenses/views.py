@@ -269,11 +269,13 @@ def Upload_Image(request):
 
             print(result)
             print(prediction_result)
-
+            prediction = ''
+            if 'class' in prediction_result:
+                prediction= prediction_result["predictions"][0]["class"]
             keywords = Keywords.objects.all()
             if len(result):
                 for i in keywords:
-                    if i.keywords.lower() in prediction_result["predictions"][0]["class"].lower() or \
+                    if i.keywords.lower() in prediction.lower() or \
                         i.keywords.lower() in result[0]['ocr'].lower():
                         print('{0} found'.format(i))
                         if 'total' in result[0]['fields']:
