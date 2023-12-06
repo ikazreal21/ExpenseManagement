@@ -66,22 +66,8 @@
                     enctype="multipart/form-data"
                   >
                     {% csrf_token %}
-                    <div class="row">
-                      <label class="col-sm-3 form-label" for="formFile"
-                        >File input</label
-                      >
-                      <div class="col-sm-9">
-                        <input
-                          class="form-control"
-                          id="formFile"
-                          type="file"
-                          name="image"
-                          accept="image/*"
-                        />
-                      </div>
-                    </div>
                     <div class="mb-3">
-                        <label class="form-label" for="exampleInputPassword1">Reciept Name</label>
+                        <label class="form-label" for="exampleInputPassword1">Receipt Name</label>
                         <input class="form-control" id="exampleInputPassword1" type="text"  name="expense_name" required>
                     </div>
                     <div class="mb-3">
@@ -103,6 +89,22 @@
                     <div class="mb-3">
                       <label class="form-label">Date</label>
                       <input class="form-control" name="date_added" type="date" required>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-3 form-label" for="formFile"
+                        >Optional File</label
+                      >
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <input
+                          class="form-control"
+                          id="formFile"
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                        />
+                      </div>
                     </div>
                     <div class="border-bottom my-5 border-gray-200"></div>
                     <div class="row">
