@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        // Open a new tab with the PDF
+        var pdfData = "{{ pdf_base64|safe }}";
+        var blob = new Blob([base64ToArrayBuffer(pdfData)], { type: 'application/pdf' });
+        var pdfUrl = URL.createObjectURL(blob);
+        window.open(pdfUrl, '_blank');
+
+        // Redirect to another page after a delay
+        setTimeout(function () {
+            window.location.href = "{% url 'report' %}";
+        }, 1);  // Redirect after 5 seconds (adjust as needed)
+
+        function base64ToArrayBuffer(base64) {
+            var binaryString = window.atob(base64);
+            var len = binaryString.length;
+            var bytes = new Uint8Array(len);
+            for (var i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
