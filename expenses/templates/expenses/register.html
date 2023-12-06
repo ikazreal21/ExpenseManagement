@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-check mb-4">
                   <input class="form-check-input" id="register-agree" name="registerAgree" type="checkbox" required value="1" data-validate-field="registerAgree">
-                  <label class="form-check-label form-label" for="register-agree">I agree with the <a class="text-sm text-paleBlue" href="https://ph.rs-online.com/web/content/about-rs/articles/website-conditions-of-use">terms and policy</a>                        </label>
+                  <label class="form-check-label form-label" for="register-agree">I agree with the <a class="text-sm text-paleBlue" href="{% url 'terms' %}">terms and policy</a>                        </label>
                 </div>
                 {% for i in messages %}
                   <script>

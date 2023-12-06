@@ -19,6 +19,7 @@ urlpatterns = [
     path("expenses/", views.ManageUpload, name="expenses"),
     path("expenses-add/", views.AddExpenses, name="add-expenses"),
     path("report/", views.Report, name="report"),
+    path("terms/", views.terms, name="terms"),
     # path("", views.HomePage, name="home"),
 
 

@@ -232,10 +232,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 register1Password: {
                     required: true,
                     password: true,
+                    minLength: 8
                 },
                 registerPassword: {
                     required: true,
                     password: true,
+                    minLength: 8
                 },
                 registerAgree: {
                     required: true,

@@ -68,23 +68,27 @@
                     {% csrf_token %}
                     {% if image %}
                     <div class="mb-3 w-100">
-                        <label class="form-label" for="exampleInputPassword1">Image</label>
+                        <label class="form-label" for="exampleInputPassword1" placeholder="">Image</label>
                         <img src="{{image.image.url}}" alt="" width="100%">
                     </div>
                     <input type="text" name="rndid" value="{{expense.rndid}}" maxlength="255" required id="id_rndid" hidden>
                     {% else %}
-                    <div class="row">
-                      <label class="col-sm-3 form-label" for="formFile"
-                        >File input</label
-                      >
-                      <div class="col-sm-9">
-                        <input
-                          class="form-control"
-                          id="formFile"
-                          type="file"
-                          name="image"
-                          accept="image/*"
-                        />
+                    <div class="mb-3">
+                      <div class="row">
+                        <label class="col-sm-3 form-label" for="formFile"
+                          >Found your Receipt? Upload Here</label
+                        >
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <input
+                            class="form-control"
+                            id="formFile"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                          />
+                        </div>
                       </div>
                     </div>
                     {% endif %}

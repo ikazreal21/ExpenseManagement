@@ -2,22 +2,22 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // ------------------------------------------------------- //
-    // Search Box
-    // ------------------------------------------------------ //
-    const navBar = document.querySelector('.navbar');
-    const searchBtn = document.getElementById('search'),
-          searchBox = document.querySelector('.search-box'),
-          searchClose = document.querySelector('.dismiss');
+    // // ------------------------------------------------------- //
+    // // Search Box
+    // // ------------------------------------------------------ //
+    // const navBar = document.querySelector('.navbar');
+    // const searchBtn = document.getElementById('search'),
+    //       searchBox = document.querySelector('.search-box'),
+    //       searchClose = document.querySelector('.dismiss');
 
-    if (navBar) {
-        searchBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            searchBox.classList.add('fadedIn');
-        });
+    // if (navBar) {
+    //     searchBtn.addEventListener('click', (e) => {
+    //         e.preventDefault();
+    //         searchBox.classList.add('fadedIn');
+    //     });
 
-        searchClose.addEventListener('click', () => searchBox.classList.remove('fadedIn'));
-    }
+    //     searchClose.addEventListener('click', () => searchBox.classList.remove('fadedIn'));
+    // }
 
 
 
@@ -140,36 +140,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // ------------------------------------------------------- //
-    // Material Inputs
-    // ------------------------------------------------------ //
+    // // ------------------------------------------------------- //
+    // // Material Inputs
+    // // ------------------------------------------------------ //
 
-    let materialInputs = document.querySelectorAll('input.input-material');
-    let materialLabel = document.querySelectorAll('label.label-material');
+    // let materialInputs = document.querySelectorAll('input.input-material');
+    // let materialLabel = document.querySelectorAll('label.label-material');
 
-    // activate labels for prefilled values
-    let filledMaterialInputs = Array.from(materialInputs).filter(function (input) {
-        return input.value !== '';
-    });
-    filledMaterialInputs.forEach(input => input.parentElement.lastElementChild.setAttribute('class', 'label-material active'));
+    // // activate labels for prefilled values
+    // let filledMaterialInputs = Array.from(materialInputs).filter(function (input) {
+    //     return input.value !== '';
+    // });
+    // filledMaterialInputs.forEach(input => input.parentElement.lastElementChild.setAttribute('class', 'label-material active'));
 
-    // move label on focus
-    materialInputs.forEach((input) => {
-        input.addEventListener('focus', function () {
-            input.parentElement.lastElementChild.setAttribute('class', 'label-material active');
-        });
-    });
+    // // move label on focus
+    // materialInputs.forEach((input) => {
+    //     input.addEventListener('focus', function () {
+    //         input.parentElement.lastElementChild.setAttribute('class', 'label-material active');
+    //     });
+    // });
 
-    // remove/keep label on blur
-    materialInputs.forEach((input) => {
-        input.addEventListener('blur', function () {
-            if (input.value !== '') {
-                input.parentElement.lastElementChild.setAttribute('class', 'label-material active');
-            } else {
-                input.parentElement.lastElementChild.setAttribute('class', 'label-material');
-            }
-        });
-    });
+    // // remove/keep label on blur
+    // materialInputs.forEach((input) => {
+    //     input.addEventListener('blur', function () {
+    //         if (input.value !== '') {
+    //             input.parentElement.lastElementChild.setAttribute('class', 'label-material active');
+    //         } else {
+    //             input.parentElement.lastElementChild.setAttribute('class', 'label-material');
+    //         }
+    //     });
+    // });
 
 
     function bsValidationBehavior(errorInputs, form) {
@@ -231,9 +231,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 register1Password: {
                     required: true,
+                    password: true,
+                    minLength: 8
                 },
                 registerPassword: {
                     required: true,
+                    password: true,
+                    minLength: 8
                 },
                 registerAgree: {
                     required: true,
@@ -242,8 +246,8 @@ document.addEventListener('DOMContentLoaded', function () {
             messages: {
                 registerUsername: 'Please enter your username',
                 registerEmail: 'Please enter a valid email address',
-                register1Password: 'Please enter your password',
-                registerPassword: 'Please enter your confirm password',
+                register1Password: 'Password must contain minimum eight characters, at least one letter and one number',
+                registerPassword: 'Password must contain minimum eight characters, at least one letter and one number',
                 registerAgree: 'Your agreement is required'
             },
             invalidFormCallback: function () {

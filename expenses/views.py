@@ -25,6 +25,7 @@ import requests
 import json
 import datetime
 
+import base64
 from django.template.loader import get_template
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -34,13 +35,31 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, Image
 
 def generate_invoice_pdf(invoice_data, username, output_filename='invoice.pdf'):
+
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter)
 
     elements = []
+
+    # Create a table with two cells
+    table_data = [
+        [Image("https://res.cloudinary.com/dmagk9gck/image/upload/v1701874448/swiftsnap_cap254.png", width=100, height=100), ''],  # Logo at top-left
+        ['', Paragraph(f"Date of Generation: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", 
+                      ParagraphStyle('DateStyle', parent=getSampleStyleSheet()['BodyText'], spaceAfter=12, alignment=2))]
+    ]
+
+    # Create a table style
+    table_style = TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),  # Align content to the top
+        ('GRID', (0, 0), (-1, -1), 0, colors.white),  # Remove cell borders
+    ])
+
+    # Create the table
+    table = Table(table_data, style=table_style)
+    elements.append(table)
 
     title_style = getSampleStyleSheet()['Title']
     elements.append(Paragraph("Report Generated", title_style))
@@ -161,7 +180,7 @@ def HomePage(request):
     total_expenses_per_month = [0,0,0,0,0,0,0,0,0,0,0,0]
     catergory = []    
     total_data_last_seven_days = []
-    date_last_seven_days = []
+    date_last_seven_days = {}
 
     uploads = Expenses.objects.filter(user=request.user)
     total_today = Expenses.objects.filter(user=request.user, date_added__year=year, date_added__month=month, date_added__day=day)
@@ -201,10 +220,22 @@ def HomePage(request):
     for i in last_seven_days:
         date = datetime.datetime.fromisoformat(str(i["day"])[:-6])
         formatted_date = date.strftime("%B %d, %Y")
+
         total_data_last_seven_days.append(i["count"])
-        date_last_seven_days.append(formatted_date)
+        if formatted_date not in date_last_seven_days:
+            date_last_seven_days[formatted_date] = i["count"]
+        else:
+            date_last_seven_days[formatted_date] += i["count"]
     
+
+    sorted_data = dict(sorted(date_last_seven_days.items()))
+
+    keys_array = list(sorted_data.keys())
+    values_array = list(sorted_data.values())
+
     print(date_last_seven_days)
+    print(sorted_data)
+    # print(total_data_last_seven_days)
 
     tolal_today_amount = 0
 
@@ -229,8 +260,8 @@ def HomePage(request):
                'catergory': len(catergory),
                'chart_category': catergory,
                'chart_category_epenses':catergory_expenses,
-               'total_data_last_seven_days': total_data_last_seven_days,
-               'date_last_seven_days': date_last_seven_days,
+               'total_data_last_seven_days': values_array,
+               'date_last_seven_days': keys_array,
                'total_today': total_today }
             
     return render(request, "expenses/homepage.html", context)
@@ -487,43 +518,33 @@ def AddExpenses(request):
 def Report(request):
     if request.method == 'POST':
         report_name = request.POST.get("expense_name")
-        filter_date = request.POST.get("filter")
-        date_added = request.POST.get("date_added")
-        dateobject = datetime.datetime.strptime(date_added, '%Y-%m-%d').date().day
+        # filter_date = request.POST.get("filter")
+        from_date = request.POST.get("from")
+        to_date = request.POST.get("to")
+        dateobject = datetime.datetime.strptime(from_date, '%Y-%m-%d').date().day
+        dateobject1 = datetime.datetime.strptime(to_date, '%Y-%m-%d').date().day
         print(dateobject)
-        print(filter_date)
+        print(dateobject1)
         print(report_name)
 
-        if filter_date == "Year":
-            year = datetime.datetime.strptime(date_added, '%Y-%m-%d').date().year
 
-            uploads = Expenses.objects.filter(user=request.user, date_added__year=year)
-        elif filter_date == "Month":
-            year = datetime.datetime.strptime(date_added, '%Y-%m-%d').date().year
-            month = datetime.datetime.strptime(date_added, '%Y-%m-%d').date().month
-
-            uploads = Expenses.objects.filter(user=request.user, date_added__year=year, date_added__month=month)
-        
-        else:
-            year = datetime.datetime.strptime(date_added, '%Y-%m-%d').date().year
-            month = datetime.datetime.strptime(date_added, '%Y-%m-%d').date().month
-            day = datetime.datetime.strptime(date_added, '%Y-%m-%d').date().day
-
-            uploads = Expenses.objects.filter(user=request.user, date_added__year=year, date_added__month=month, date_added__day=day)
+        uploads = Expenses.objects.filter(user=request.user, date_added__range=[from_date, to_date])
 
         pdf = generate_invoice_pdf(uploads, request.user)
+    
+        # Pass the PDF content as a base64-encoded string to the template
+        pdf_base64 = base64.b64encode(pdf).decode('utf-8')
 
-        # Create HTTP response with PDF content
-        response = HttpResponse(pdf, content_type='application/pdf')
-        response['Content-Disposition'] = 'inline; filename="{}.pdf"'.format(report_name)
-        # Render a template with JavaScript for redirection
-        template = get_template('expenses/redirect_template.html')
-        context = {'redirect_url': reverse('expenses')}
-        response.write(template.render(context, request))
+        # Render a template with JavaScript for opening a new tab with the PDF and redirecting
+        template = get_template('expenses/open_pdf_in_new_tab_template.html')
+        context = {'pdf_base64': pdf_base64}
+        return HttpResponse(template.render(context, request))
 
-        return response
     
     context = {}
     return render(request, "expenses/generate_report.html", context)
 
 
+
+def terms(request):
+    return render(request, "expenses/terms.html")

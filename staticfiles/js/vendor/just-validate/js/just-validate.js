@@ -353,7 +353,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             zip: /^\d{5}(-\d{4})?$/,
             phone: /^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$/,
-            password: /[^\w\d]*(([0-9]+.*[A-Za-z]+.*)|[A-Za-z]+.*([0-9]+.*))/,
+            // password: /[^\w\d]*(([0-9]+.*[A-Za-z]+.*)|[A-Za-z]+.*([0-9]+.*))/,
+            password: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^\w\d]).{8,}$/,
             strengthPass: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/
         };
         this.DEFAULT_REMOTE_ERROR = 'Error';
@@ -383,8 +384,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             password: {
                 required: true,
                 password: true,
-                minLength: 4,
-                maxLength: 8
+                minLength: 8,
+                maxLength: 16
             },
             zip: {
                 required: true,
