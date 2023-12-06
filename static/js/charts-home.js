@@ -132,8 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 {
                     data: category_expeses,
                     borderWidth: 0,
-                    backgroundColor: ["blue", "red", "green", "violet"],
-                    hoverBackgroundColor: ["lightblue", "lightred", "lightgreen", "lightviolet"],
+                    backgroundColor: ["blue", "red", "green", "violet", "yello", "#654a86", "#385631", "#00ca79", "#143a44"],
+                    hoverBackgroundColor: ["lightblue", "lightred", "lightgreen", "lightviolet", "lightyellow", "#b183ea", "#a1e892", "#035e38", "#49c9ed"],
                 },
             ],
         },

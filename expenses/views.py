@@ -203,6 +203,8 @@ def HomePage(request):
         formatted_date = date.strftime("%B %d, %Y")
         total_data_last_seven_days.append(i["count"])
         date_last_seven_days.append(formatted_date)
+    
+    print(date_last_seven_days)
 
     tolal_today_amount = 0
 
@@ -254,7 +256,7 @@ def Upload_Image(request):
             })
             headers = {
             'Content-Type': 'application/json',
-            'Authorization': 'ApiKey joaquinzaki21@gmail.com:c3e7596b-6f0f-456e-b8eb-d96d1dcc553c'
+            'Authorization': 'ApiKey soriano.zaki.1@gmail.com:26923409-5d6f-4687-8341-97a60dc223e1'
             }
 
             response = requests.request("POST", url, headers=headers, data=payload, timeout=10000)
@@ -269,11 +271,13 @@ def Upload_Image(request):
 
             print(result)
             print(prediction_result)
-
+            prediction = ''
+            if 'class' in prediction_result:
+                prediction= prediction_result["predictions"][0]["class"]
             keywords = Keywords.objects.all()
             if len(result):
                 for i in keywords:
-                    if i.keywords.lower() in prediction_result["predictions"][0]["class"].lower() or \
+                    if i.keywords.lower() in prediction.lower() or \
                         i.keywords.lower() in result[0]['ocr'].lower():
                         print('{0} found'.format(i))
                         if 'total' in result[0]['fields']:
