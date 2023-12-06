@@ -196,14 +196,13 @@ document.addEventListener('DOMContentLoaded', function () {
             rules: {
                 loginUsername: {
                     required: true,
-                    email: true
                 },
                 loginPassword: {
                     required: true,
                 },
             },
             messages: {
-                loginUsername: 'Please enter a valid email',
+                loginUsername: 'Please enter a valid username',
                 loginPassword: 'Please enter your password'
             },
             invalidFormCallback: function () {
