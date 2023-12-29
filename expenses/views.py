@@ -349,6 +349,42 @@ def Upload_Image(request):
                                 category=i.category
                             )
                             return redirect('upload_confirmation', pk=image.reference_number)
+                # 
+                if 'total' in result[0]['fields']:
+                    if result[0]['fields']['total']:
+                        # print("result2", result)
+                        print(type(result[0]['fields']['total']['value']))
+                        total_amount = result[0]['fields']['total']['value']
+                        total_amount = total_amount.replace(',', '')
+                        Expenses.objects.create(
+                            user=request.user, 
+                            expense_name="",
+                            total_amount=float(total_amount),
+                            rndid=image.reference_number
+                        )
+                        print(result[0]['fields']['total']['value'])
+                        return redirect('upload_confirmation', pk=image.reference_number)
+                elif 'heightImperial' in result[0]['fields']:
+                    print(type(result[0]['fields']['heightImperial']['value']))
+                    total_amount = result[0]['fields']['heightImperial']['value']
+                    total_amount = total_amount.replace(',', '')
+                    if total_amount == '':
+                        total_amount = 0
+                    Expenses.objects.create(
+                        user=request.user, 
+                        expense_name="",
+                        total_amount=float(total_amount),
+                        rndid=image.reference_number
+                    )
+                    return redirect('upload_confirmation', pk=image.reference_number)
+                else:
+                    Expenses.objects.create(
+                        user=request.user, 
+                        expense_name="",
+                        total_amount=float(0),
+                        rndid=image.reference_number
+                    )
+                    return redirect('upload_confirmation', pk=image.reference_number)
                 messages.info(request, "Invalid Reciept")
                 return redirect('upload_reciept')
             else:

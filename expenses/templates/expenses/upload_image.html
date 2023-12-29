@@ -86,12 +86,16 @@
                       <div class="col-sm-9 ms-auto">
                         <script>
                           function myFunction() {
-                            document.getElementById("data1").style.display = "none";
-                              document.getElementById("data").style.display = "none";
-                              console.log("hello")
+                              if(confirm('Images that will be uploaded need to have a good lighting \n\nAre you sure you want to upload this image?')) {
+                                document.getElementById("data1").style.display = "none";
+                                document.getElementById("data").style.display = "none";
+                                console.log("hello")
+                              } else {
+                                return false
+                              }
                             }
                             </script>
-                        <button class="btn btn-primary" onclick="myFunction()" type="submit">
+                        <button class="btn btn-primary" onclick="return myFunction()"   type="submit">
                           Upload
                         </button>   
                         

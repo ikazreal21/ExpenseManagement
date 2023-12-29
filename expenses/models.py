@@ -46,12 +46,12 @@ class Uploaded_Image_Expenses(models.Model):
 
 class Expenses(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    expense_name = models.CharField(max_length=255)
+    expense_name = models.CharField(max_length=255, null=True, blank=True)
     total_amount = models.FloatField(max_length=10)
     rndid = models.CharField(max_length=255, null=True, blank=True)
     date_due = models.CharField(max_length=255)
     date_added = models.DateTimeField(default=datetime.now, null=True, blank=True)
-    category = models.CharField(max_length=255)
+    category = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         ordering = ("-date_added",)
